@@ -1,0 +1,29 @@
+<div class="container">
+  <form class="example-form" [formGroup]="roomForm" (ngSubmit)="onFormSubmit(roomForm.value)">
+      <header>
+
+      Enter Room Name
+
+        <button
+                class="btn2"
+                style="float: right"
+                (click)="btnClick();">
+          <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+      </header>
+      <div class="space"></div>
+      <mat-form-field class="width">
+        <mat-label class="font">Room Name</mat-label>
+        <input matInput placeholder="Enter room name" formControlName="roomname"
+                [errorStateMatcher]="matcher"
+                #roomName>
+        <mat-error>
+          <span *ngIf="!roomForm.get('roomname').valid && roomForm.get('roomname').touched">Enter room name</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="space"></div>
+      <div class="btn-cnt">
+          <button type="submit" [disabled]="(roomName.value.length === 0)" mat-fab color="primary" title="Save room" class="btn"><mat-icon>save</mat-icon></button>
+      </div>
+  </form>
+</div>
